@@ -28,6 +28,10 @@ def get_pet_labels(image_dir):
     
     # Iterate over each filename in the directory
     for filename in filenames:
+        # Skip dotfiles (files starting with a dot)
+        if filename.startswith('.'):
+            continue
+
         # Initialize an empty string for the pet label
         pet_label = ""
         

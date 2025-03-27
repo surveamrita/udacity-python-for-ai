@@ -102,9 +102,6 @@ def calculates_results_stats(results_dic):
             # Check if classifier also classifies as non-dog
             if classifier_is_dog == 0:
                 n_correct_notdogs += 1
-            # If the labels match and it's not a dog
-            if label_match == 1:
-                n_match += 1
 
         # Count matches
         if label_match == 1:

@@ -77,9 +77,15 @@ def print_results(results_dic, results_stats_dic, model,
     print(f"Percentage of Correct Breeds: {results_stats_dic['pct_correct_breed']:.2f}%")
     print(f"Percentage of Correct 'Not-a' Dog Classifications: {results_stats_dic['pct_correct_notdogs']:.2f}%")
     print(f"Percentage of Correct Matches: {results_stats_dic['pct_match']:.2f}%\n")
+
+    # Check if the number of correct dogs + incorrect dogs equals total images
+    correct_dogs = results_stats_dic['n_correct_dogs']
+    incorrect_dogs = results_stats_dic['n_dogs_img'] - correct_dogs
+    total_images = results_stats_dic['n_images']
+    correct_breeds = results_stats_dic['n_correct_breed']
     
     # Optionally print incorrectly classified dogs
-    if print_incorrect_dogs:
+    if print_incorrect_dogs and correct_dogs + incorrect_dogs != total_images:
         print("Incorrectly Classified Dog Images:")
         for key in results_dic:
             pet_is_dog = results_dic[key][3]
@@ -92,7 +98,7 @@ def print_results(results_dic, results_stats_dic, model,
         print("")  # New line for separation
     
     # Optionally print incorrectly classified dog breeds
-    if print_incorrect_breed:
+    if print_incorrect_breed and correct_dogs != correct_breeds:
         print("Incorrectly Classified Dog Breeds:")
         for key in results_dic:
             pet_is_dog = results_dic[key][3]
